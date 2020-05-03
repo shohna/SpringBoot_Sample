@@ -16,24 +16,22 @@ import com.demo.shohna.MyApp.model.Role;
 import com.demo.shohna.MyApp.model.User;
 import com.demo.shohna.MyApp.repository.UserRepository;
 
-public class UserDetailsServiceImp {
-	@Service
-	public class UserDetailsServiceImpl implements UserDetailsService{
+@Service
+public class UserDetailsServiceImp implements UserDetailsService{
 		
-		@Autowired
-		private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 		
-	    @Override
-	    @Transactional(readOnly = true)
-	    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	        User user = userRepository.findByUsername(username);
+	@Override
+	@Transactional(readOnly = true)
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userRepository.findByUsername(username);
 
-	        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-	        for (Role role : user.getRoles()){
-	        	grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-	        }
+	    Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+	    for (Role role : user.getRoles()){
+	        grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+	    }
 
 	        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
 	    }
 	}
-}
