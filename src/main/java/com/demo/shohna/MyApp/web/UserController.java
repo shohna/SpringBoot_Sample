@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.shohna.MyApp.model.User;
 import com.demo.shohna.MyApp.service.UserService;
+import com.demo.shohna.MyApp.validator.UserValidator;
 
 @Controller
 public class UserController {
