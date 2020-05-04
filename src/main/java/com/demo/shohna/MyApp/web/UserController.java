@@ -46,7 +46,7 @@ public class UserController {
 
         userService.save(userForm);
 
-        return "redirect:/welcome";
+        return "redirect:/dummy";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -60,9 +60,9 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
+    @RequestMapping(value = {"/", "/dummy"}, method = RequestMethod.GET)
+    public String dummy(Model model) {
+        return "dummy";
     }
 }
 
